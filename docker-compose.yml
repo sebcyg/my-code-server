@@ -10,6 +10,8 @@ services:
     #  - /home/<USER>/appdata/my-code-server:/home/vscodeuser/
     
     #optional : add the network
+    volumes:
+      - 'vscodeuser:/home/vscodeuser'
     networks:
       - vscode-server-network
 
