@@ -2,11 +2,6 @@ services:
   vscode-server:
     container_name: my-code-server
     image: ghcr.io/nerasse/my-code-server:main
-    ports:
-      - "${HOST_PORT:-8585}:${CONTAINER_PORT:-8585}"
-    environment:
-      - PORT=${CONTAINER_PORT:-8585}
-      - TOKEN=${TOKEN:-sometoken}
       # Uncomment to set custom UID/GID for the vscodeuser (useful for volume permissions)
       #- PUID=${PUID:-1000}
       #- PGID=${PGID:-1000}
@@ -17,6 +12,9 @@ services:
     #optional : add the network
     networks:
       - vscode-server-network
+
+    labels:
+      - traefik.http.middlewares.authentik-auth@file
 
 #optional : add the network 
 networks:
